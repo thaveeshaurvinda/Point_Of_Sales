@@ -28,7 +28,7 @@ class PosSystem:
     def load_last_transaction_id(self):
         if os.path.exists(self.tax_file) and os.path.getsize(self.tax_file) > 0:
             with open(self.tax_file, newline='') as csvfile:
-                reader = csv.DictReader(csvfile)  # Read the file as a CSV using column names
+                reader = csv.DictReader(csvfile)  # Read the file as CSV using column names
                 if "transaction_id" in reader.fieldnames:
                     id_list = []
                     for row in reader:
