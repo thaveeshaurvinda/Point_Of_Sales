@@ -189,9 +189,7 @@ class PosSystem:
         print("----------------------")
 
         for idx, item in enumerate(self.basket, 1):
-            print(f"{idx}. Item Name: {item['item_name']} | Quantity: {item['quantity']} | "
-                  f"Sale Price: {item['sale_price']} | Discount: {item['discount']}% | "
-                  f"Line Total: {item['line_total']:.2f}")
+            print(f"{idx}. Item Name: {item['item_name']} | Quantity: {item['quantity']} | "f"Sale Price: {item['sale_price']} | Discount: {item['discount']}% | "f"Line Total: {item['line_total']:.2f}")
             grand_total += item["line_total"]
 
         print("----------------------")
@@ -207,8 +205,7 @@ class PosSystem:
         file_exists = os.path.isfile(self.tax_file) and os.stat(self.tax_file).st_size > 0
 
         with open(self.tax_file, "a", newline='') as csvfile:
-            fieldnames = ["transaction_id", "date", "item_name", "internal_price", "discount", "sale_price",
-                          "quantity", "line_total", "uppercase", "lowercase", "digits_and_dots", "checksum"]
+            fieldnames = ["transaction_id", "date", "item_name", "internal_price", "discount", "sale_price", "quantity", "line_total", "uppercase", "lowercase", "digits_and_dots", "checksum"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             if not file_exists:
@@ -237,9 +234,7 @@ class PosSystem:
 
                 for row in reader:
                     if row["transaction_id"] == transaction_id:
-                        print(row["date"], "|", row["item_name"], "| Qty:", row["quantity"], "| Sale Price:",
-                              row["sale_price"], "| Discount:", row["discount"] + "%", "| Line Total:",
-                              row["line_total"])
+                        print(row["date"], "|", row["item_name"], "| Qty:", row["quantity"], "| Sale Price:", row["sale_price"], "| Discount:", row["discount"] + "%", "| Line Total:", row["line_total"])
                         found = True
 
         if not found:
@@ -283,4 +278,3 @@ class PosSystem:
 if __name__ == "__main__":
     pos = PosSystem()
     pos.main()
-
