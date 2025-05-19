@@ -72,6 +72,11 @@ class PosSystem:
                 print("Invalid item code. Not found in inventory.")
                 continue
 
+            product_price = int(product_details[1].strip())
+            if product_price < 0:
+                print("Invalid price. Price must be greater than 0.")
+                continue
+
             try:
                 product_details[0] = item_code
                 product_details[1] = float(product_details[1])
@@ -123,8 +128,13 @@ class PosSystem:
             print("Line | Item Name       | Internal Price | Discount | Sale Price | Quantity")
             print("--------------------------------------------------------------------------")
 
+            discount = float(self.input_array[2])
+            sale_price = float(self.input_array[3])
+            quantity = int(self.input_array[4])
+
             for index, item in enumerate(self.basket):
-                print(f"{index:<4} | {item['item_name']:<15} | {item['internal_price']:<14} | "f"{item['discount']:<8} | {item['sale_price']:<10} | {item['quantity']}")
+                print(f"{index:<4} | {item['item_name']:<15} | {item['internal_price']:<14} | "f"{item['discount']:<8} | {item['sale_price']:<10} | {item['quantity']} | {item['line_total']:.2f}")
+                line_total = sale_price * quantity * (1 - discount / 100)
 
     def delete_item(self):
         self.display_basket()
